@@ -26,10 +26,7 @@ export function giveChange () {
     };
 }
 
-// buy item. --- dispensory tray. 
-// retrieve item from tray.
-// recieve change. 
-// request refund. 
 // replenish float. 
 // add new item. 
 // discontinue item. 
+// retrieve item from tray.
