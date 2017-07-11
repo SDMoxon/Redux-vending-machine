@@ -1,4 +1,5 @@
 import * as types from '../actions/types';
+import * as utils from '../utils';
 
 export const initialState = {
   stock: {
@@ -63,7 +64,19 @@ export function reducer(prevState = initialState, action) {
     newState.credit = Number(newState.credit.toFixed(2));
     return newState;
   }
+  if (action.type === types.GIVE_CHANGE) {
+    const newState = Object.assign({}, prevState);
+    newState.float = Object.assign({}, prevState.float);
 
+    const changeObject = utils.changeCalculator(newState.credit);
+
+    Object.keys(newState.float).map((key) => {
+      newState.float[key] -= changeObject[key];
+    });
+
+    newState.credit = 0;
+    return newState;
+  }
   //   if (action.type === types.TURN_ON_MACHINE) {
   //       const newState = Object.assign({}, prevState);
   //       newState.power = action.power;

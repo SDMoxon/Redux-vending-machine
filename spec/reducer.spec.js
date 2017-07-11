@@ -42,7 +42,7 @@ describe('REDUCER', function () {
             const newState = reducer(initialState, action);
             expect(newState.selection).to.equal('A1');
         });
-         it('return error message for insufficient credit', () => {
+        it('return error message for insufficient credit', () => {
             const action1 = actions.insertCoin(0.5);
             const newState1 = reducer(initialState, action1);
             const row = 'A1';
@@ -57,7 +57,7 @@ describe('REDUCER', function () {
             const action = actions.inputSelection(row);
             const newState = reducer(initialState, action);
             expect(newState.productDispenser).to.equal(newState.stock[row].name);
-            expect(newState.stock[row].quantity).to.equal(initialState.stock[row].quantity - 1);  
+            expect(newState.stock[row].quantity).to.equal(initialState.stock[row].quantity - 1);
         });
         it('deduct from credit', () => {
             const action1 = actions.insertCoin(1);
@@ -65,7 +65,18 @@ describe('REDUCER', function () {
             const row = 'A1';
             const action2 = actions.inputSelection(row);
             const newState2 = reducer(newState1, action2);
-            expect(newState2.credit).to.eql(0.15);  
+            expect(newState2.credit).to.eql(0.15);
+        });
+    });
+    describe('action GIVE_CHANGE', () => {
+        it('gives change', () => {
+            const action1 = actions.insertCoin(1);
+            const action2 = actions.giveChange();
+            const newState1 = reducer(initialState, action1);
+            const newState2 = reducer(newState1, action2);
+
+            expect(newState2.credit).to.equal(0);
+            expect(newState2.float[1]).to.equal(9);
         });
     });
 });

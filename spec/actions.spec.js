@@ -1,9 +1,9 @@
-import {expect} from 'chai';
+import { expect } from 'chai';
 import * as types from '../actions/types';
 import * as actions from '../actions/actions';
 
 describe('ACTIONS', () => {
-  describe('INSERT_COIN',() => {
+  describe('INSERT_COIN', () => {
     it('returns the expected action', () => {
       expect(actions.insertCoin(0.2)).to.eql({
         type: types.INSERT_COIN,
@@ -11,7 +11,7 @@ describe('ACTIONS', () => {
       });
     });
   });
-  describe('REPLENISH_STOCK',() => {
+  describe('REPLENISH_STOCK', () => {
     it('returns the expected action', () => {
       expect(actions.replenishStock('A1', 10)).to.eql({
         type: types.REPLENISH_STOCK,
@@ -20,11 +20,18 @@ describe('ACTIONS', () => {
       });
     });
   });
-    describe('INPUT_SELECTION',() => {
+  describe('INPUT_SELECTION', () => {
     it('returns the expected action', () => {
       expect(actions.inputSelection('A1')).to.eql({
         type: types.INPUT_SELECTION,
         row: 'A1',
+      });
+    });
+  });
+  describe('GIVE_CHANGE', () => {
+    it('returns the expected action', () => {
+      expect(actions.giveChange()).to.eql({
+        type: types.GIVE_CHANGE,
       });
     });
   });

@@ -20,6 +20,11 @@ export function inputSelection (row) {
         row
     };
 }
+export function giveChange () {
+    return {
+        type: types.GIVE_CHANGE,
+    };
+}
 
 // buy item. --- dispensory tray. 
 // retrieve item from tray.
