@@ -21,7 +21,6 @@ export function inputSelection (row) {
     };
 }
 
-// input selection. 
 // buy item. --- dispensory tray. 
 // retrieve item from tray.
 // recieve change. 

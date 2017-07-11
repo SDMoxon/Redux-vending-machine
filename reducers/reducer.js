@@ -15,7 +15,7 @@ export const initialState = {
       price: 0.85
     }
   },
-  credit: [],
+  credit: 0,
   changeArea: [],
   float: {
     '1': 10,
@@ -35,7 +35,7 @@ export function reducer(prevState = initialState, action) {
 
   if (action.type === types.INSERT_COIN) {
     const newState = Object.assign({}, prevState);
-    newState.credit = newState.credit.concat([action.coin]);
+    newState.credit = newState.credit += action.coin;
     return newState;
   }
 
@@ -53,17 +53,16 @@ export function reducer(prevState = initialState, action) {
     newState.stock[action.row] = Object.assign({}, prevState.stock[action.row]);
     newState.selection = action.row;
 
-    const totalCredit = newState.credit.reduce((acc, item) => {
-      acc + item;
-      return acc;
-    }, 0);
-
-    if (totalCredit < newState.stock[action.row].price) {
+    if (newState.credit < newState.stock[action.row].price) {
       newState.displayMessage = 'Soz, needz more moneyz bra';
     }
     newState.productDispenser = newState.stock[action.row].name;
 
     newState.stock[action.row].quantity--;
+    console.log(newState.credit);
+    console.log(newState.stock[action.row].price);
+    newState.credit -= newState.stock[action.row].price;
+    newState.credit = Number(newState.credit.toFixed(2));
     return newState;
   }
 

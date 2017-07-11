@@ -10,7 +10,7 @@ describe('REDUCER', function () {
         it('updates the state correctly', function () {
             const action = actions.insertCoin(0.2);
             const newState = reducer(initialState, action);
-            expect(newState.credit).to.eql([0.2]);
+            expect(newState.credit).to.equal(0.2);
         });
         it('is immutable', () => {
             const action = actions.insertCoin(0.2);
@@ -57,8 +57,15 @@ describe('REDUCER', function () {
             const action = actions.inputSelection(row);
             const newState = reducer(initialState, action);
             expect(newState.productDispenser).to.equal(newState.stock[row].name);
-            expect(newState.stock[row].quantity).to.equal(initialState.stock[row].quantity - 1);
-            
+            expect(newState.stock[row].quantity).to.equal(initialState.stock[row].quantity - 1);  
+        });
+        it('deduct from credit', () => {
+            const action1 = actions.insertCoin(1);
+            const newState1 = reducer(initialState, action1);
+            const row = 'A1';
+            const action2 = actions.inputSelection(row);
+            const newState2 = reducer(newState1, action2);
+            expect(newState2.credit).to.eql(0.15);  
         });
     });
 });
