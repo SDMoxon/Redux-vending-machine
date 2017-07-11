@@ -20,5 +20,13 @@ describe('REDUCER', function () {
             const newState = reducer(initialState, action); 
             expect(newState.stock[row].quantity).to.equal(20);
         });
+        it('is immutable', () => {
+            const row = 'A1';
+            const action = actions.replenishStock(row, 10);
+            const newState = reducer(initialState, action); 
+            expect(newState).to.not.eql(initialState);
+            expect(newState.stock).to.not.eql(initialState.stock);
+            expect(newState.stock[row]).to.not.eql(initialState.stock[row]);
+        });
     });
 });
