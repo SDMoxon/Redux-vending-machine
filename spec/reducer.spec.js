@@ -51,5 +51,14 @@ describe('REDUCER', function () {
             expect(newState2.selection).to.equal('A1');
             expect(newState2.displayMessage).to.equal('Soz, needz more moneyz bra');
         });
+        it('adds item to dispensory tray & decrements the stock accordingly', () => {
+            actions.insertCoin(1);
+            const row = 'A1';
+            const action = actions.inputSelection(row);
+            const newState = reducer(initialState, action);
+            expect(newState.productDispenser).to.equal(newState.stock[row].name);
+            expect(newState.stock[row].quantity).to.equal(initialState.stock[row].quantity - 1);
+            
+        });
     });
 });
