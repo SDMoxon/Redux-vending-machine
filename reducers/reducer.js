@@ -47,6 +47,12 @@ export function reducer (prevState = initialState, action) {
       return newState;
   }
 
+  if (action.type === types.INPUT_SELECTION) {
+      const newState = Object.assign({}, prevState);
+      newState.selection = action.row;
+      return newState;
+  }
+
 //   if (action.type === types.TURN_ON_MACHINE) {
 //       const newState = Object.assign({}, prevState);
 //       newState.power = action.power;

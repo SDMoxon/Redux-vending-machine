@@ -34,4 +34,12 @@ describe('REDUCER', function () {
             expect(newState.stock[row]).to.not.eql(initialState.stock[row]);
         });
     });
+    describe('action INPUT_SELECTION', () => {
+        it('update selection', () => {
+            const row = 'A1';
+            const action = actions.inputSelection(row);
+            const newState = reducer(initialState, action);
+            expect(newState.selection).to.equal('A1');
+        });
+    });
 });
