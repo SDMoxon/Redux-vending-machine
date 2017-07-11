@@ -7,9 +7,10 @@ export function insertCoin (coin) {
     };
 }
 
-export function replenishStock (quantity) {
+export function replenishStock (row, quantity) {
     return {
         type: types.REPLENISH_STOCK,
-        quantity
+        row,
+        quantity,
     }
 }

@@ -39,6 +39,14 @@ export function reducer (prevState = initialState, action) {
     return newState;
   }
 
+  if (action.type === types.REPLENISH_STOCK) {
+      const newState = Object.assign({}, prevState);
+      newState.stock = Object.assign({}, prevState.stock);
+      newState.stock[action.row] = Object.assign({}, prevState.stock[action.row]);
+      newState.stock[action.row].quantity += action.quantity;
+      return newState;
+  }
+
 //   if (action.type === types.TURN_ON_MACHINE) {
 //       const newState = Object.assign({}, prevState);
 //       newState.power = action.power;

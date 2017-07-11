@@ -13,10 +13,11 @@ describe('ACTIONS', () => {
   });
   describe('REPLENISH_STOCK',() => {
     it('returns the expected action', () => {
-      expect(actions.replenishStock(10)).to.eql({
+      expect(actions.replenishStock('A1', 10)).to.eql({
         type: types.REPLENISH_STOCK,
+        row: 'A1',
         quantity: 10
       });
     });
-  })
+  });
 });
