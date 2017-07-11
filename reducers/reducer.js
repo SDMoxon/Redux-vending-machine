@@ -59,8 +59,6 @@ export function reducer(prevState = initialState, action) {
     newState.productDispenser = newState.stock[action.row].name;
 
     newState.stock[action.row].quantity--;
-    console.log(newState.credit);
-    console.log(newState.stock[action.row].price);
     newState.credit -= newState.stock[action.row].price;
     newState.credit = Number(newState.credit.toFixed(2));
     return newState;
