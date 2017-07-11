@@ -7,9 +7,9 @@ export function insertCoin (coin) {
     };
 }
 
-export function turnOnMachine (is_it_on) {
+export function replenishStock (quantity) {
     return {
-        type: types.TURN_ON_MACHINE,
-        is_it_on
-    };
+        type: types.REPLENISH_STOCK,
+        quantity
+    }
 }
