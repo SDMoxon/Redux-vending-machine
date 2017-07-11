@@ -36,10 +36,20 @@ describe('REDUCER', function () {
     });
     describe('action INPUT_SELECTION', () => {
         it('update selection', () => {
+            actions.insertCoin(1);
             const row = 'A1';
             const action = actions.inputSelection(row);
             const newState = reducer(initialState, action);
             expect(newState.selection).to.equal('A1');
+        });
+         it('return error message for insufficient credit', () => {
+            const action1 = actions.insertCoin(0.5);
+            const newState1 = reducer(initialState, action1);
+            const row = 'A1';
+            const action2 = actions.inputSelection(row);
+            const newState2 = reducer(newState1, action2);
+            expect(newState2.selection).to.equal('A1');
+            expect(newState2.displayMessage).to.equal('Soz, needz more moneyz bra');
         });
     });
 });
