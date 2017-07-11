@@ -20,4 +20,14 @@ describe('ACTIONS', () => {
       });
     });
   });
+    describe('INPUT_SELECTION',() => {
+    it('returns the expected action', () => {
+      expect(actions.inputSelection('A1')).to.eql({
+        type: types.INPUT_SELECTION,
+        row: 'A1',
+      });
+    });
+  });
 });
+
+
