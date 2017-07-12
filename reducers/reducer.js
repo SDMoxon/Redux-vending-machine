@@ -19,9 +19,12 @@ export const initialState = {
   credit: 0,
   changeArea: [],
   float: {
+    '2': 10,
     '1': 10,
     '0.5': 10,
-    '0.1': 10
+    '0.2': 10,
+    '0.1': 10,
+    '0.05': 10,
   },
   displayMessage: '',
   selection: '',
@@ -36,8 +39,14 @@ export function reducer(prevState = initialState, action) {
 
   if (action.type === types.INSERT_COIN) {
     const newState = Object.assign({}, prevState);
-    newState.credit = newState.credit += action.coin;
-    return newState;
+    newState.float = Object.assign({}, prevState.float);
+    if (newState.float[action.coin]) {
+      newState.float[action.coin]++;
+      newState.credit += action.coin;
+      return newState;
+    }
+    return prevState;
+
   }
 
   if (action.type === types.REPLENISH_STOCK) {

@@ -8,12 +8,21 @@ describe('REDUCER', function () {
     });
     describe('action INSERT_COIN', function () {
         it('updates the state correctly', function () {
-            const action = actions.insertCoin(0.2);
+            const action = actions.insertCoin(1);
             const newState = reducer(initialState, action);
-            expect(newState.credit).to.equal(0.2);
+            expect(newState.credit).to.equal(1);
+        });
+        it('updates float if coin is valid.', () => {
+            let action = actions.insertCoin(1);
+            let newState = reducer(initialState, action);
+            expect(newState.float[1]).to.equal(11);
+
+            action = actions.insertCoin(0.01);
+            newState = reducer(initialState, action);
+            expect(newState).to.equal(initialState);
         });
         it('is immutable', () => {
-            const action = actions.insertCoin(0.2);
+            const action = actions.insertCoin(1);
             const newState = reducer(initialState, action);
             expect(newState).to.not.eql(initialState);
         });
@@ -76,7 +85,7 @@ describe('REDUCER', function () {
             const newState2 = reducer(newState1, action2);
 
             expect(newState2.credit).to.equal(0);
-            expect(newState2.float[1]).to.equal(9);
+            expect(newState2.float[1]).to.equal(10);
         });
     });
 });
